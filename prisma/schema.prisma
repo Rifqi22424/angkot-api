@@ -1,0 +1,29 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Angkot {
+  id        Int      @id @default(autoincrement())
+  name      String
+  driver    String
+  lat       Float
+  lng       Float
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  lat       Float
+  lng       Float
+}
+
+model Route {
+  id        Int      @id @default(autoincrement())
+  name      String
+  points    Json
+}
