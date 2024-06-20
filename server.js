@@ -9,6 +9,14 @@ const { PrismaClient } = require('@prisma/client');
 const seed = require('./scripts/seed'); // Import the seed script
 
 const prisma = new PrismaClient();
+prisma.$connect()
+  .then(() => {
+    console.log('Connected to database');
+  })
+  .catch((e) => {
+    console.error('Failed to connect to database', e);
+  });
+
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
@@ -54,11 +62,11 @@ io.on('connection', (socket) => {
 server.listen(3000, async () => {
   console.log('Server is running on port 3000');
   
-  try {
-    await seed();
-    console.log('Database seeded successfully');
-  } catch (e) {
-    console.error('Failed to seed database:', e);
-    process.exit(1);
-  }
+  // try {
+  //   await seed();
+  //   console.log('Database seeded successfully');
+  // } catch (e) {
+  //   console.error('Failed to seed database:', e);
+  //   process.exit(1);
+  // }
 });
