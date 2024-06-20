@@ -55,7 +55,7 @@ server.listen(3000, async () => {
   console.log('Server is running on port 3000');
   
   try {
-    await seed();
+    // await seed();
     console.log('Database seeded successfully');
   } catch (e) {
     console.error('Failed to seed database:', e);
